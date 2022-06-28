@@ -1,8 +1,8 @@
 .wrapper{
   height: 100vh;
   width: 100vw;
-  background-color: gray;
+  /* background-color: gray;
   display: flex;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 5px; */
 }

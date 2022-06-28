@@ -1,12 +1,14 @@
 import "./App.css";
-import Sidebar from "./Sidebar";
-import ChatWindow from "./Chatwindow";
+import Router from "./Router";
+import firebase from "./firebase";
 
 function App() {
+
+  const ref = firebase.firestore().collection("chatroom")
+  console.log(ref);
   return (
     <div className="wrapper">
-      <Sidebar />
-      <ChatWindow />
+      <Router />
     </div>
   );
 }
