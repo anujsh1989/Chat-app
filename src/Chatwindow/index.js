@@ -1,11 +1,15 @@
 import React from "react";
 import InputEmoji from "react-input-emoji";
 import Sidebar from "../Sidebar";
+import {auth} from '../firebase'
 import "./chatwindow.css";
+import { useNavigate } from "react-router-dom";
 
 export default function ChatWindow() {
+  const navigate = useNavigate();
   const onLogout = () => {
-    alert("test");
+    auth.signOut()
+navigate('/')
   };
 
   return (

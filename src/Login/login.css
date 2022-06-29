@@ -74,6 +74,7 @@ width: 80px;
     justify-content: center;
     align-items: center;
     font-size: 20px;
+    cursor: pointer;
 }
 .signup-msg-txt{
     font-size: 18px;
