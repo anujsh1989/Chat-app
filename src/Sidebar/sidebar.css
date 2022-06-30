@@ -1,14 +1,14 @@
 .sidebar-wrapper {
   height: calc(100vh - 10px);
   width: 400px;
-  display: flex;
+  display:flex;
   align-items: center;
   flex-direction: column;
   border-right: 1px solid rgb(159, 154, 154);
   box-sizing: border-box;
 }
 .user-wrapper {
-  height: 70px;
+  height: 60px;
   width: 100%;
   background-color: lightgray;
   box-sizing: border-box;
@@ -42,7 +42,7 @@
   margin-left: 20px;
 }
 .search-wrapper {
-  height: 70px;
+  height: 60px;
   width: 100%;
   background-color: rgb(231, 227, 227);
   display: flex;
@@ -80,10 +80,11 @@
 }
 .sidebar-chatuser-wrapper {
   width: 100%;
-  height: -webkit-fill-available;
-  display: flex;
+  height:calc(100vh - 120px);
+  display:inline-flexbox;
   flex-direction: column;
   background-color: white;
+  overflow-y: scroll;
 }
 .sidebar-chatuser {
   height: 60px;

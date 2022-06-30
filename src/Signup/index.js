@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc,setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import "./signup.css";
 import { useNavigate } from "react-router-dom";
@@ -16,25 +16,25 @@ export default function Signup() {
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then((auth) => {
-        navigate('/chatwindow')
+        navigate("/chatwindow");
         console.log(auth);
         const { uid } = auth.user;
-        
+
         let userData = {
           uid,
           name,
-          email
+          email,
         };
-        
+
         setDoc(doc(db, "Users", uid), userData)
-        .then((resp) => {
-          localStorage.setItem("uid",uid);
-          localStorage.setItem("email",email);
-          localStorage.setItem("password",password);
-        })
-        .catch((err) => {
-          debugger
-        })
+          .then((resp) => {
+            localStorage.setItem("uid", uid);
+            localStorage.setItem("email", email);
+            localStorage.setItem("password", password);
+          })
+          .catch((err) => {
+            debugger;
+          });
       })
       .catch((error) => {
         debugger;

@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./sidebar.css";
+import { db } from "../firebase";
+import {  getDocs, collection } from "firebase/firestore";
 
 export default function Sidebar() {
+  const uid = localStorage.getItem("uid");
+  const [data, setData] = useState([]);
+  const [user, setUser] = useState("");
+
+  const fetchUsersData = async () => {
+    let usersData = [];
+    const usersCollection = await getDocs(collection(db, "Users"));
+    if (usersCollection) {
+      usersCollection.forEach((doc) => {
+        usersData.push(doc.data());
+      });
+    }
+    setData([...usersData]);
+  };
+
+  const fetchUserName = () => {};
+
+  useEffect(() => {
+    fetchUsersData();
+    fetchUserName();
+  }, []);
+
   return (
     <div className="sidebar-wrapper">
       <div className="user-wrapper">
@@ -27,19 +51,24 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="sidebar-chatuser-wrapper">
-        <div className="sidebar-chatuser">
-          <div className="sidebar-chatuser-avatar">
-            <img
-              className="chatuser-avatar"
-              alt="avatar"
-              src="/logo192.png"
-            ></img>
-          </div>
-          <div className="chatuser-info">
-            <h3>Test</h3>
-            <p>Test 1</p>
-          </div>
-        </div>
+        {data.map((item, index) => {
+          console.log("item", item,index);
+          return (
+            <div key={item.uid} className="sidebar-chatuser">
+              <div className="sidebar-chatuser-avatar">
+                <img
+                  className="chatuser-avatar"
+                  alt="avatar"
+                  src="/logo192.png"
+                ></img>
+              </div>
+              <div className="chatuser-info">
+                <h3>{item.name}</h3>
+                <p>{item.email}</p>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

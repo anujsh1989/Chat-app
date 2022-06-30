@@ -13,8 +13,12 @@ export default function Login() {
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
         navigate("/chatwindow");
+        const {uid} = auth.user; 
+        localStorage.setItem("uid",uid);
+        localStorage.setItem("email",email);
+      
       })
-      .catch((error) => console.error(error));
+      .catch((error) => alert(error));
   };
   const navigate = useNavigate();
 
