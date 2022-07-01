@@ -9,8 +9,7 @@ export default function ChatWindow() {
   const navigate = useNavigate();
   const onLogout = () => {
     auth.signOut();
-    // navigate("/");
-    window.location.reload()
+    navigate("/");
     localStorage.clear();
   };
 

@@ -46,10 +46,12 @@
   align-items: center;
   margin-right: 20px;
   flex-direction: column;
+  cursor: pointer;
 }
 .chatwindow-user-logout-btn {
   height: 30px;
   width: 30px;
+
 }
 .chatwindow-user-info-wrapper > p {
   margin: 5px 0px 5px 0px;
@@ -71,6 +73,7 @@
   flex-direction: column;
   box-sizing: border-box;
   padding-left: 20px;
+  overflow-y: scroll;
 }
 .chatwindow-message-wrapper {
   width: 100%;

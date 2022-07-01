@@ -4,9 +4,10 @@ import { db } from "../firebase";
 import {  getDocs, collection } from "firebase/firestore";
 
 export default function Sidebar() {
-  const uid = localStorage.getItem("uid");
+  const {name} = localStorage;
   const [data, setData] = useState([]);
   const [user, setUser] = useState("");
+  const initials = name.substring(0,1);
 
   const fetchUsersData = async () => {
     let usersData = [];
@@ -19,21 +20,19 @@ export default function Sidebar() {
     setData([...usersData]);
   };
 
-  const fetchUserName = () => {};
 
   useEffect(() => {
     fetchUsersData();
-    fetchUserName();
   }, []);
 
   return (
     <div className="sidebar-wrapper">
       <div className="user-wrapper">
         <div className="user-image-wrapper">
-          <p>a</p>
+          <p>{initials}</p>
         </div>
         <div className="user-welcome">
-          <p>Welcome</p>
+          <p>{`Welcome, ${name}`}</p>
         </div>
       </div>
       <div className="search-wrapper">
@@ -51,8 +50,7 @@ export default function Sidebar() {
         </div>
       </div>
       <div className="sidebar-chatuser-wrapper">
-        {data.map((item, index) => {
-          console.log("item", item,index);
+        {data.map((item) => {
           return (
             <div key={item.uid} className="sidebar-chatuser">
               <div className="sidebar-chatuser-avatar">

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import RouteNames from "../Router/routenames";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import "./login.css";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -12,11 +13,18 @@ export default function Login() {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
       .then((auth) => {
-        navigate("/chatwindow");
-        const {uid} = auth.user; 
-        localStorage.setItem("uid",uid);
-        localStorage.setItem("email",email);
-      
+        const { uid } = auth.user;
+        getDoc(doc(db, "Users", uid)).then((resp) => {
+          if (resp && resp.data()) {
+            const { email, name } = resp.data();
+            localStorage.setItem("uid", uid);
+            localStorage.setItem("email", email);
+            localStorage.setItem("name", name);
+            navigate("/chatwindow");
+          } else {
+            console.log("some issue in getting user please check user");
+          }
+        });
       })
       .catch((error) => alert(error));
   };

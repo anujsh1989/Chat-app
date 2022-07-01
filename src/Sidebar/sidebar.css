@@ -87,12 +87,13 @@
   overflow-y: scroll;
 }
 .sidebar-chatuser {
-  height: 60px;
+  height: 62px;
   width: 100%;
   border-bottom: 2px solid lightgray;
   display: flex;
   justify-content: center;
   background-color: white;
+  cursor: pointer;
 }
 .chatuser-avatar {
   height: 50px;
